@@ -24,15 +24,61 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.ButtonBar{
+  display: flex;
+  border-bottom: 1px white solid;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.CheckBoxField{
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+.ButtonBarInput{
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: calc(10px + 1vmin);
+  max-width: calc(20px + 3vmin);
+}
+
+.WeightInput{
+  margin-top: calc(10px + 1vmin);
+  font-size: calc(10px + 1vmin);
+  max-width: calc(50px + 4vmin);
+}
+.invalid{
+  color:red;
+  text-decoration: line-through;
+}
+
+.valid{
+  color:white;
+}
+
+.BarArea{
+  padding: 50px;
+  padding-top: 20px;
+}
+
+.tile{
+  margin: 10px;
+  width: calc(15px + 1vmin);
+  height: calc(15px + 1vmin);
+
+}
+
+.Legend{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px;
+  margin-top: 150px;
+  justify-content: center;
+}
+
+.LegendIcon{
+  display: flex;
+  flex-direction: row-reverse;
 }

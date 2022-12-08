@@ -1,0 +1,16 @@
+
+.BarGraphicArea{
+ display: flex;
+ justify-content: center;
+ align-items:center;
+ height: 100px;
+}
+
+.Bar{
+    background-color: dimgray;
+    width: 400px;
+    height: 8px;
+    border: 1px solid black;
+    margin: -1px;
+}
+
