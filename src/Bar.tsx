@@ -33,11 +33,11 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
 
         return (<div className='BarGraphicArea'>
 
-            <Collar side={0} numPlates={loadedPlates.length} on={props.Collars}></Collar>
+            <Collar side={0} Plates={loadedPlates} on={props.Collars}></Collar>
             {plates.reverse()}
             <div className='Bar'></div>
             {rightPlates}
-            <Collar side={1} numPlates={loadedPlates.length} on={props.Collars}></Collar>
+            <Collar side={1} Plates={loadedPlates} on={props.Collars}></Collar>
         </div>)
     }
 

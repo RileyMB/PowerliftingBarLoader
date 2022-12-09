@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-       <h4 style={{margin:'0px'}}>BDSM Bar Loader</h4>
+       <h4 style={{margin:'0px'}}>Hypnos Bar Loader</h4>
 
        <div  className='ButtonBar'>
         <label className='CheckBoxField'>Red Plates<input className='ButtonBarInput' type="checkbox" defaultChecked={true} onChange={()=>SetRedPlates(!RedPlates)}/></label>
