@@ -6,7 +6,6 @@ import Plate from './Plate';
 
 function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight: number }) {
     var plateArray = getPlateArray();
-    const [valid, setValid] = useState(true)
 
     function getPlateArray() {
         //COLOUR, WEIGHT, SIZE (for rendering)
@@ -35,7 +34,9 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
 
             <Collar side={0} Plates={loadedPlates} on={props.Collars}></Collar>
             {plates.reverse()}
+            <div className='BarEdge'></div>
             <div className='Bar'></div>
+            <div className='BarEdge'></div>
             {rightPlates}
             <Collar side={1} Plates={loadedPlates} on={props.Collars}></Collar>
         </div>)
@@ -49,6 +50,7 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
         var subWeight = props.Weight;
         subWeight = subWeight - bar - collars; //straight away take the weight off of the bar and collars
 
+        
         if(subWeight % 2.5 == 0){
             var index = 0;
             while (subWeight > 0 && index <= plateArray.length) {
@@ -63,6 +65,7 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
             }
         }
         
+
         return (<div className={subWeight < 0 ? 'invalid' : 'valid'}>
             {/* {(props.Collars ? "COLLAR " : "") + loadedPlates.reverse() + " BAR " + loadedPlates.reverse() + (props.Collars ? " COLLAR" : "")} */}
             {drawBar(loadedPlates)}

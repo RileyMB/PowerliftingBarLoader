@@ -21,7 +21,7 @@ function Collar(props: {side: number, Plates:any[], on:boolean}) {
     
         });
         //length*2 for border on plates
-        let width = 125 - (plateWidth) - (props.Plates.length * 2)
+        let width = 125 - (plateWidth) - (props.Plates.length * 2) - (props.on? -0 : -22)
         return width
     }
 

@@ -50,7 +50,7 @@
   max-width: calc(50px + 4vmin);
 }
 .invalid{
-  color:red;
+  background-color: red;
   text-decoration: line-through;
 }
 
