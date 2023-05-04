@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import './Bar.css'
 
-function Collar(props: { side: number, Plates: any[], on: boolean }) {
+function Collar(props: { side: number, Plates: any[], on: boolean, Instruction: boolean }) {
 
     //calculates the left over width on the bar past the collars
     function getWidth() {
@@ -30,8 +30,10 @@ function Collar(props: { side: number, Plates: any[], on: boolean }) {
 
     return (<div style={{ display: "flex", alignItems: "center", flexDirection: props.side == 1 ? "row" : "row-reverse" }}>
 
+        {/* DRAW COLLAR IF COLLARS ARE ON */}
         {props.on ? <div style={{ background: "var(--barColor)", width: "20px", height: "30px", border: "1px solid rgb(36, 36, 36)" }}></div> : <></>}
-        <div style={{ background: "var(--barColor)", width: getWidth(), height: "8px", margin: "-1px", border: "1px solid rgb(36, 36, 36)" }}></div>
+        {/* DRAW REST OF BAR IF NOT AN INSTRUCTION */}
+        {!props.Instruction? <div style={{ background: "var(--barColor)", width: getWidth(), height: "8px", margin: "-1px", border: "1px solid rgb(36, 36, 36)" }}></div> : <></>}
     </div>);
 }
 

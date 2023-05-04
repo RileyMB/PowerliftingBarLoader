@@ -1,0 +1,10 @@
+.instruction{
+    display: flex;
+    align-items: center;
+    
+}
+
+.instruction-text{
+    padding-left: 1em;
+}
+

@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import './Bar.css'
 import Collar from './Collar';
 import Plate from './Plate';
 
 function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight: number }) {
-    var plateArray = getPlateArray();
+    //var plateArray = getPlateArray();
+
+    const [plateArray, setPlateArray] = useState<any>([])
+
+
+    useEffect(() => {
+        getPlateArray();
+    }, [props])
+
 
     function getPlateArray() {
         //COLOUR, WEIGHT, SIZE (for rendering)
@@ -15,7 +23,7 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
             arr.shift();
         }
 
-        return arr;
+        setPlateArray(arr);
     }
 
 
@@ -32,13 +40,13 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
 
         return (<div className='BarGraphicArea'>
 
-            <Collar side={0} Plates={loadedPlates} on={props.Collars}></Collar>
+            <Collar side={0} Plates={loadedPlates} on={props.Collars} Instruction={false}></Collar>
             {plates.reverse()}
             <div className='BarEdge'></div>
-            <div className='Bar'></div>
+            <div className='Bar' ></div>
             <div className='BarEdge'></div>
             {rightPlates}
-            <Collar side={1} Plates={loadedPlates} on={props.Collars}></Collar>
+            <Collar side={1} Plates={loadedPlates} on={props.Collars} Instruction={false}></Collar>
         </div>)
     }
 
@@ -67,8 +75,7 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
         
 
         return (<div className={subWeight < 0 ? 'invalid' : 'valid'}>
-            {/* {(props.Collars ? "COLLAR " : "") + loadedPlates.reverse() + " BAR " + loadedPlates.reverse() + (props.Collars ? " COLLAR" : "")} */}
-            {drawBar(loadedPlates)}
+               {drawBar(loadedPlates)}
         </div>)
     }
 

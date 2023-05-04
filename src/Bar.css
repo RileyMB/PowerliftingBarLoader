@@ -13,6 +13,7 @@
 .Bar{
     background:  var(--barColor);
     width: 400px;
+    width: 20vw;
     height: 8px;
     border: 1px solid rgb(36, 36, 36);
     margin: -1px;

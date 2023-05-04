@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import './Bar.css'
+import './Instructions.css'
 import Collar from './Collar';
 import Plate from './Plate';
 
 function Instructions(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight: number }) {
 
     const [plateArray, setPlateArray] = useState<any>([])
-    const [loadedPlates, setLoadedPlates] = useState<any>([])
 
     useEffect(() => {
         getPlateArray();
-        calcBar();
-    }, [props.Weight])
+    }, [props])
 
 
     function getPlateArray() {
         //COLOUR, WEIGHT, SIZE (for rendering)
         let arr: any[] = [["Red", 25.0, 75], ["Blue", 20.0, 75], ["Yellow", 15.0, 65], ["Green", 10.0, 60], ["White", 5.0, 45], ["Black", 2.5, 45], ["Silver", 1.25, 40]];
-
+        console.log("HERE", props.Reds)
         if (!props.Reds) { //Remove Red from array
             arr.shift();
         }
@@ -49,43 +48,63 @@ function Instructions(props: { Weight: number, Reds: boolean, Collars: boolean, 
             }
         }
 
-        setLoadedPlates(loadedplates)
-
+        //setLoadedPlates(loadedplates)
+        return(<>{renderIntructions(loadedplates)}</>)
 
     }
 
-    function renderIntructions() {
+    function renderIntructions(loadedPlates: any[]) {
 
         let elements: JSX.Element[] = [];
-        let instructions: any[] = [{Color: String, Size: Number,Qty: Number}];
+        let instructions: { Color: string, Weight: number, Size: number, Qty: number }[] = [];
 
-        loadedPlates.forEach((plate: any[], index: number) => {
-            let color = plate[0]
-            let size = plate[2]
-            //If first plate of said color
-            instructions.map((instruction: any, index) => {
-                if (instruction.color === color) {
-                    instruction.qty ++
-                }
-                
-            })
-        })
-
-
+        //For each loaded plate
         loadedPlates.forEach((plate: any[]) => {
-            elements.push(<div>
-                <Plate Color={plate[0]} Size={plate[2]}></Plate>
-                <a>x 1</a>
+            let color = plate[0]
+            let weight = plate[1]
+            let size = plate[2]
+
+            let found = false;
+            //For each set of instructions
+            if (instructions.length > 0) {
+                instructions.forEach((instruction) => {
+                    // if there already is no matching color 
+                    if (!found) {
+                        //check if the current instruction == the loaded plate color
+                        if (instruction.Color === color) {
+                            //Set found to true so nothing is added to instructions, rather increse the QTY
+                            instruction.Qty++;
+                            found = true;
+                        }
+                    }
+                })
+            }
+            //If no match was found in the instructions add it to the instructions
+            if (!found) {
+                instructions.push({ Color: color, Weight: weight, Size: size, Qty: 1 })
+            }
+        });
+
+        instructions.forEach((plate) => {
+            elements.push(<div className='instruction' key={plate.Color}>
+                <Plate Color={plate.Color} Size={plate.Size}></Plate>
+                <a className='instruction-text'> {plate.Qty} x {plate.Weight}KG</a>
             </div>)
         })
 
+        if(props.Collars){
+            elements.push(<div className='instruction' key={"collar"} >
+            <Collar side={0} Plates={[]} on={true} Instruction={true}></Collar>
+            <a className='instruction-text'> {1} x COLLAR</a>
+        </div>)
+
+            elements.push(<a style={{fontSize:"small"}} key={"infoText"}>*COLLARS WEIGH 2.5KG EACH</a>)
+        }
+
         return (elements)
-
-
-
     }
 
-    return (<>{renderIntructions()}</>)
+    return (<>{calcBar()}</>)
 }
 
 export default Instructions;
