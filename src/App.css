@@ -115,7 +115,8 @@ body{
  
 }
 .invalid{
-  background-color: red;
+  filter: blur(5px);
+  transition: 0.3s ease-out;
   text-decoration: line-through;
 }
 
@@ -194,6 +195,7 @@ body{
   .instruction-wrapper{
     width: 100% !important;
     border: none;
+    height: 80vh;
   }
 
   .instruction{
@@ -246,8 +248,11 @@ body{
   .BarArea{
     justify-content: normal;
     min-height: 100px;
-    overflow:scroll; 
+    overflow:hidden; 
     width: 60%;
+    transform: translateZ(0); 
+    /* hack to stop unrendering background */
+
   }
 
 }
