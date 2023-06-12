@@ -3,9 +3,8 @@ import './App.css';
 import './Bar.css'
 import Collar from './Collar';
 import Plate from './Plate';
-import HalfBar from './HalfBar';
 
-function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight: number }) {
+function HalfBar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight: number }) {
     //var plateArray = getPlateArray();
 
     const [plateArray, setPlateArray] = useState<any>([])
@@ -33,21 +32,21 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
 
         let plates = [];
         for (let i = 0; i < loadedPlates.length; i++) {
-            plates.push(<Plate Color={loadedPlates[i][0]} Size={loadedPlates[i][2]} HalfBar={false}></Plate>)
+            plates.push(<Plate Color={loadedPlates[i][0]} Size={loadedPlates[i][2] *1.75 } HalfBar={true}></Plate>)
         }
         let rightPlates = [...plates]
 
 
 
-        return (<div className='BarGraphicArea'>
+        return (<div className='HalfBarGraphicArea'>
 
-            <Collar side={0} Plates={loadedPlates} on={props.Collars} Instruction={false} HalfBar={false}></Collar>
-            {plates.reverse()}
-            <div className='BarEdge'></div>
-            <div className='Bar' ></div>
+            {/* <Collar side={0} Plates={loadedPlates} on={props.Collars} Instruction={false}></Collar> */}
+            {/* {plates.reverse()} */}
+            {/* <div className='BarEdge'></div> */}
+            <div className='HalfBar' ></div>
             <div className='BarEdge'></div>
             {rightPlates}
-            <Collar side={1} Plates={loadedPlates} on={props.Collars} Instruction={false} HalfBar={false}></Collar>
+            <Collar side={1} Plates={loadedPlates} on={props.Collars} Instruction={false} HalfBar={true}></Collar>
         </div>)
     }
 
@@ -83,5 +82,5 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
     return (<>  {calcBar()} </>);
 }
 
-export default Bar;
+export default HalfBar;
 

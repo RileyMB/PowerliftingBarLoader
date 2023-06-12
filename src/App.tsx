@@ -6,6 +6,8 @@ import 'react-data-grid/lib/styles.css';
 import ReactDataGrid, { Column, SelectColumn, SortColumn, textEditor } from 'react-data-grid';
 import { Direction } from './types';
 import Instructions from './Instructions';
+import Legend from './Legend';
+import HalfBar from './HalfBar';
 
 
 
@@ -34,48 +36,64 @@ function App() {
   const [Collars, SetCollars] = useState(true);
   const [BarWeight, setBarWeight] = useState(20);
 
-
+  let vh = window.innerHeight * 0.01;
+  // Then we set the value in the --vh custom property to the root of the document
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 
   return (
     <div className="App">
-      <section className="App-section" style={{width: "67%"}}>
+      <section className="App-section" >
+
+        {/*****************************************************/}
         <div className='ButtonBar'>
           <label className='CheckBoxField'>Red Plates<input className='ButtonBarInput' type="checkbox" defaultChecked={true} onChange={() => SetRedPlates(!RedPlates)} /></label>
           <label className='CheckBoxField'>Collars<input className='ButtonBarInput' type="checkbox" defaultChecked={true} onChange={() => SetCollars(!Collars)} /></label>
-          <label className='CheckBoxField'>Bar Weight<input className='ButtonBarInput' type="number" defaultValue={20} min={5} max={30} step={2.5} onChange={(event) => { setBarWeight(Number(event.target.value)) }} /></label>
+          <label className='CheckBoxField'>Bar Weight<input className='ButtonBarInput' type="number" defaultValue={20} min={5} max={30} step={2.5} onChange={(event) => { if (Number(event.target.value) <= 30) { setBarWeight(Number(event.target.value)) } else { setBarWeight(30) } }} /></label>
         </div>
 
+        {/*****************************************************/}
         <div className='weight-enter-area'>
           <a>Enter your weight:</a>
-          <input className="WeightInput" type={"number"} step={2.5} min={Collars ? 25 : 20} defaultValue={Collars ? 25 : 20} onChange={(event) => { setWeight(Number(event.target.value)) }}></input>
+          <input className="WeightInput" type={"number"} step={2.5} min={Collars ? 25 : 20} max={625} defaultValue={Collars ? 25 : 20}
+            onChange={(event) => {
+              // If input greater than 650 accept else set to 625
+              if (Number(event.target.value) <= 625) {
+                setWeight(Number(event.target.value))
+              }
+              else {
+                setWeight(625)
+                event.target.value = '625'
+              }
+            }
+            }
+          />
         </div>
+
+        {/*****************************************************/}
 
         <div className='BarArea'>
           <Bar Weight={weight} Reds={RedPlates} Collars={Collars} BarWeight={BarWeight}></Bar>
+          <HalfBar Weight={weight} Reds={RedPlates} Collars={Collars} BarWeight={BarWeight}></HalfBar>
         </div>
+        {/*****************************************************/}
 
-        <div className='Legend'>
-          <div className='LegendIcon'>25kg <div className='tile' style={{ backgroundColor: 'red' }}></div></div>
-          <div className='LegendIcon'>20kg <div className='tile' style={{ backgroundColor: 'blue' }}></div></div>
-          <div className='LegendIcon'>  15kg <div className='tile' style={{ backgroundColor: 'Yellow' }}></div></div>
-          <div className='LegendIcon'> 10kg <div className='tile' style={{ backgroundColor: 'Green' }}></div></div>
-          <div className='LegendIcon'> 5kg <div className='tile' style={{ backgroundColor: 'White' }}></div></div>
-          <div className='LegendIcon'> 2.5kg <div className='tile' style={{ backgroundColor: 'Black' }}></div></div>
-          <div className='LegendIcon'>  1.25kg <div className='tile' style={{ backgroundColor: 'Silver' }}></div></div>
-          <div className='LegendIcon'>  2.5kg<div className='tile' style={{ backgroundColor: 'dimgray' }}></div></div>
+        <Legend></Legend>
 
-        </div>
+        <div className='mobile-scroll-popup'>↓</div>
       </section>
 
-      <section className="App-section instruction-section">
-        <div>
+      <section className="App-section instruction-wrapper">
+        <div >
           <h2>INTRUCTIONS</h2>
           <h4>PER SIDE</h4>
-          
-        </div>
-        <Instructions Weight={weight} Reds={RedPlates} Collars={Collars} BarWeight={BarWeight}></Instructions>
 
+        </div>
+        <div className='instruction-section'>
+
+       
+        <Instructions  Weight={weight} Reds={RedPlates} Collars={Collars} BarWeight={BarWeight}></Instructions>
+        </div>
       </section>
 
     </div>

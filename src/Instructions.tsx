@@ -87,14 +87,14 @@ function Instructions(props: { Weight: number, Reds: boolean, Collars: boolean, 
 
         instructions.forEach((plate) => {
             elements.push(<div className='instruction' key={plate.Color}>
-                <Plate Color={plate.Color} Size={plate.Size}></Plate>
+                <Plate Color={plate.Color} Size={plate.Size} HalfBar={false}></Plate>
                 <a className='instruction-text'> {plate.Qty} x {plate.Weight}KG</a>
             </div>)
         })
 
         if(props.Collars){
             elements.push(<div className='instruction' key={"collar"} >
-            <Collar side={0} Plates={[]} on={true} Instruction={true}></Collar>
+            <Collar side={0} Plates={[]} on={true} Instruction={true} HalfBar={false}></Collar>
             <a className='instruction-text'> {1} x COLLAR</a>
         </div>)
 

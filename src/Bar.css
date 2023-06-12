@@ -10,14 +10,31 @@
  height: 100px;
 }
 
+.HalfBarGraphicArea{
+    display: none;
+    justify-content: center;
+    align-items:center;
+    height: 100px;
+}
+
 .Bar{
     background:  var(--barColor);
-    width: 400px;
+
     width: 20vw;
-    height: 8px;
+    height: 0.5vw;
     border: 1px solid rgb(36, 36, 36);
     margin: -1px;
 }
+
+.HalfBar{
+    background:  var(--barColor);
+
+    width:175px;
+    height: 10px;
+    border: 1px solid rgb(36, 36, 36);
+    margin: -1px;
+}
+
 
 .BarEdge{
     background:  var(--barColor);
@@ -26,3 +43,18 @@
     border: 1px solid rgb(36, 36, 36);
 }
 
+@media (max-width: 850px) {
+
+    .BarGraphicArea{
+        display: none;
+    }
+
+    .HalfBarGraphicArea{
+    
+        display: flex;
+        transform: translateX(-125px);
+    }
+
+
+
+}

@@ -7,7 +7,13 @@ body{
 .App {
   display: flex;
   text-align: center;
+  overflow-y: hidden;
+  scroll-snap-type: y mandatory;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
+
+
 
 .App-title{
   font-size: calc(46px + 0.5vw);
@@ -19,11 +25,7 @@ body{
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-section {
   background-color: #212121;
@@ -34,12 +36,29 @@ body{
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
+
+
+
+  scroll-snap-align: start;
+  
+}
+
+.instruction-wrapper{
+  justify-content:space-evenly;
+  width: 50%;
+  border-left: 5px dashed darkgrey;
+  display: block;
+
 }
 
 .instruction-section{
-  justify-content:space-evenly;
+  display: flex;
+  flex-direction: column;
 
-
+  align-items: center;
+  height: 80%;
+  justify-content: space-around;
 }
 
 .ButtonBar{
@@ -116,7 +135,9 @@ body{
  
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+
+  width: 40vw;
 }
 
 .tile{
@@ -130,7 +151,6 @@ body{
   display: flex;
   flex-wrap: wrap;
   margin: 50px;
-  margin-top: 150px;
   justify-content: center;
 }
 
@@ -155,3 +175,79 @@ body{
   outline: none;
 }
 
+.mobile-scroll-popup{
+  display: none;
+
+}
+
+
+
+/* ******************** mobile view ********************** */
+
+@media (max-width: 850px) {
+  /* Styles for mobile view */
+  .App {
+    overflow-y: scroll;
+    flex-direction: column;
+
+  }
+  .instruction-wrapper{
+    width: 100% !important;
+    border: none;
+  }
+
+  .instruction{
+    scale: 2;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    transform: perspective(1px) translateZ(0);
+  }
+  .instruction-section{
+   height: 70%;
+  }
+
+
+  .ButtonBar{
+    padding-top: 50px;
+    font-size: 24px !important;
+  }
+
+  .ButtonBarInput{
+    font-size: 18px;
+    margin: 10px 0 10px 0;
+    height: 20px
+  } 
+
+  .CheckBoxField{
+    flex-direction: column;
+  }
+  .weight-enter-area{
+    width: auto;
+    font-size:x-large;
+  }
+
+  .WeightInput{
+    width: auto;
+    font-size: 20px;
+  }
+  
+  .mobile-scroll-popup{
+    display: block;
+    font-size: 32px;
+    font-weight: 900;
+    padding-bottom: 100px;
+    margin-bottom: 60px;
+  }
+
+  .App{
+    overflow-y: scroll;
+  }
+
+  .BarArea{
+    justify-content: normal;
+    min-height: 100px;
+    overflow:scroll; 
+    width: 60%;
+  }
+
+}
