@@ -68,7 +68,7 @@ function App() {
         </div>
       </section>
 
-      <section className="App-section instruction-section" style={{width: "33%", borderLeft: "5px dashed darkGrey"}}>
+      <section className="App-section instruction-section">
         <div>
           <h2>INTRUCTIONS</h2>
           <h4>PER SIDE</h4>
