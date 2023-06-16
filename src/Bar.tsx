@@ -60,9 +60,9 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
         subWeight = subWeight - bar - collars; //straight away take the weight off of the bar and collars
 
         
-        if(subWeight % 2.5 == 0){
+        if(subWeight % 1.25 == 0){ //if the weight can be devided by smallest plate
             var index = 0;
-            while (subWeight > 0 && index <= plateArray.length) {
+            while (subWeight > 0 && index <= plateArray.length) { 
                 if ((subWeight - (plateArray[index][1] * 2)) >= 0) { //If plate * 2 fits into subweight
     
                     subWeight = subWeight - (plateArray[index][1] * 2);
@@ -72,6 +72,9 @@ function Bar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWeight
                     index++;
                 }
             }
+        }
+        else{
+            subWeight = -1; //If not divisible by 1.25 set to -1 as its invalid
         }
         
 

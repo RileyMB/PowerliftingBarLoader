@@ -17,7 +17,7 @@ function HalfBar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWe
 
     function getPlateArray() {
         //COLOUR, WEIGHT, SIZE (for rendering)
-        let arr: any[] = [["Red", 25.0, 75], ["Blue", 20.0, 75], ["Yellow", 15.0, 65], ["Green", 10.0, 60], ["White", 5.0, 45], ["Black", 2.5, 45], ["Silver", 1.25, 40]];
+        let arr: any[] = [["Red", 25.0, 75], ["Blue", 20.0, 75], ["Yellow", 15.0, 65], ["Green", 10.0, 60], ["White", 5.0, 45], ["Black", 2.5, 40], ["Silver", 1.25, 35]];
 
         if (!props.Reds) { //Remove Red from array
             arr.shift();
@@ -59,9 +59,9 @@ function HalfBar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWe
         subWeight = subWeight - bar - collars; //straight away take the weight off of the bar and collars
 
         
-        if(subWeight % 2.5 == 0){
+        if(subWeight % 1.25 == 0){ //if the weight can be devided by smallest plate
             var index = 0;
-            while (subWeight > 0 && index <= plateArray.length) {
+            while (subWeight > 0 && index <= plateArray.length) { 
                 if ((subWeight - (plateArray[index][1] * 2)) >= 0) { //If plate * 2 fits into subweight
     
                     subWeight = subWeight - (plateArray[index][1] * 2);
@@ -71,6 +71,9 @@ function HalfBar(props: { Weight: number, Reds: boolean, Collars: boolean, BarWe
                     index++;
                 }
             }
+        }
+        else{
+            subWeight = -1; //If not divisible by 1.25 set to -1 as its invalid
         }
         
 
