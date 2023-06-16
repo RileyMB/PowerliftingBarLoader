@@ -52,7 +52,7 @@
     .HalfBarGraphicArea{
     
         display: flex;
-        transform: translateX(-125px);
+    transform: translateX(-25%);
     }
 
 

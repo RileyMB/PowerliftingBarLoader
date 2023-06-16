@@ -1,31 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 import Bar from './Bar';
 import 'react-data-grid/lib/styles.css';
-import ReactDataGrid, { Column, SelectColumn, SortColumn, textEditor } from 'react-data-grid';
-import { Direction } from './types';
 import Instructions from './Instructions';
 import Legend from './Legend';
 import HalfBar from './HalfBar';
-
-
-
-interface Row {
-  name: string;
-  class: string;
-  weight: number;
-  age: number;
-  S1: number;
-  S2: number;
-  S3: number;
-  B1: number;
-  B2: number;
-  B3: number;
-  D1: number;
-  D2: number;
-  D3: number;
-}
 
 
 
@@ -36,10 +15,6 @@ function App() {
   const [Collars, SetCollars] = useState(true);
   const [BarWeight, setBarWeight] = useState(20);
 
-  let vh = window.innerHeight * 0.01;
-  // Then we set the value in the --vh custom property to the root of the document
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-
 
   return (
     <div className="App">
@@ -49,7 +24,17 @@ function App() {
         <div className='ButtonBar'>
           <label className='CheckBoxField'>Red Plates<input className='ButtonBarInput' type="checkbox" defaultChecked={true} onChange={() => SetRedPlates(!RedPlates)} /></label>
           <label className='CheckBoxField'>Collars<input className='ButtonBarInput' type="checkbox" defaultChecked={true} onChange={() => SetCollars(!Collars)} /></label>
-          <label className='CheckBoxField'>Bar Weight<input className='ButtonBarInput' type="number" defaultValue={20} min={5} max={30} step={2.5} onChange={(event) => { if (Number(event.target.value) <= 30) { setBarWeight(Number(event.target.value)) } else { setBarWeight(30) } }} /></label>
+          <label className='CheckBoxField'>Bar Weight<input className='ButtonBarInput' type="number"
+            defaultValue={20} min={5} max={35} step={2.5}
+            onChange={(event) => {
+              if (Number(event.target.value) <= 35) {
+                setBarWeight(Number(event.target.value))
+              } else {
+                setBarWeight(35)
+                event.target.value = '35'
+              }
+            }} />
+          </label>
         </div>
 
         {/*****************************************************/}
@@ -91,8 +76,8 @@ function App() {
         </div>
         <div className='instruction-section'>
 
-       
-        <Instructions  Weight={weight} Reds={RedPlates} Collars={Collars} BarWeight={BarWeight}></Instructions>
+
+          <Instructions Weight={weight} Reds={RedPlates} Collars={Collars} BarWeight={BarWeight}></Instructions>
         </div>
       </section>
 
