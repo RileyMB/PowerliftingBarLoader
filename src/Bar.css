@@ -1,7 +1,5 @@
 
-:root{
-    --barColor: linear-gradient(180deg, rgb(133, 133, 133) 0%, rgb(116, 116, 116) 51%, rgb(32, 32, 32) 100%);
-}
+
 
 .BarGraphicArea{
  display: flex;

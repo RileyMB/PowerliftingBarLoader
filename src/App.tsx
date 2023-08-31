@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <section className="App-section" >
-
+       <div>
         {/*****************************************************/}
         <div className='ButtonBar'>
           <label className='CheckBoxField'>Red Plates<input className='ButtonBarInput' type="checkbox" defaultChecked={true} onChange={() => SetRedPlates(!RedPlates)} /></label>
@@ -38,8 +38,13 @@ function App() {
         </div>
 
         {/*****************************************************/}
+        
+           
+
+
         <div className='weight-enter-area'>
-          <a>Enter your weight:</a>
+         
+          <b>Enter your weight:</b>
           <input className="WeightInput" type={"number"} step={2.5} min={Collars ? 25 : 20} max={625} defaultValue={Collars ? 25 : 20}
             onChange={(event) => {
               // If input greater than 650 accept else set to 625
@@ -54,7 +59,7 @@ function App() {
             }
           />
         </div>
-
+     </div>
         {/*****************************************************/}
 
         <div className='BarArea'>

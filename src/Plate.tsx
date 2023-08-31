@@ -32,6 +32,30 @@ function Plate(props: { Color: string, Size: number, HalfBar: boolean }) {
       
     }
 
+    function getColor() {
+        var color;
+        
+        switch (props.Color) {
+            case 'Silver':
+                color = 'Silver';
+                break;
+            case 'Black':
+                color = 'Black';
+                break;
+            case 'Yellow':
+                color = '#969600';
+                break;
+            case 'Red':
+                color = '#990000'
+                break;
+            default:
+                color = props.Color;
+        }
+
+        return color
+      
+    }
+
     // props.Size * 1.5 + "Px"
     function getHeight() {
         var height
@@ -47,8 +71,8 @@ function Plate(props: { Color: string, Size: number, HalfBar: boolean }) {
     }
     return (<div style={{
 
-        background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0) 51%, rgba(46,46,46,0.66) 100%)",
-        backgroundColor: props.Color,
+        background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0) 51%, rgba(36,36,36,0.90) 100%)",
+        backgroundColor: getColor(),
         width: getWidth(),
         height: getHeight(),
         border: "1px black solid",
