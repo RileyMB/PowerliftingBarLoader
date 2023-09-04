@@ -17,7 +17,6 @@ function Instructions(props: { Weight: number, Reds: boolean, Collars: boolean, 
     function getPlateArray() {
         //COLOUR, WEIGHT, SIZE (for rendering)
         let arr: any[] = [["Red", 25.0, 75], ["Blue", 20.0, 75], ["Yellow", 15.0, 65], ["Green", 10.0, 60], ["White", 5.0, 45], ["Black", 2.5, 45], ["Silver", 1.25, 40]];
-        console.log("HERE", props.Reds)
         if (!props.Reds) { //Remove Red from array
             arr.shift();
         }
