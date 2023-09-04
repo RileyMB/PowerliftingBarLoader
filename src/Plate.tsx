@@ -77,7 +77,8 @@ function Plate(props: { Color: string, Size: number, HalfBar: boolean }) {
         height: getHeight(),
         border: "1px black solid",
         borderRadius: "2.5px"
-    }}>
+        
+    }} className='plate'>
     </div>);
 }
 

@@ -49,7 +49,7 @@ function Instructions(props: { Weight: number, Reds: boolean, Collars: boolean, 
         }
 
         //setLoadedPlates(loadedplates)
-        return(<>{renderIntructions(loadedplates)}</>)
+        return (<>{renderIntructions(loadedplates)}</>)
 
     }
 
@@ -87,18 +87,22 @@ function Instructions(props: { Weight: number, Reds: boolean, Collars: boolean, 
 
         instructions.forEach((plate) => {
             elements.push(<div className='instruction' key={plate.Color}>
-                <Plate Color={plate.Color} Size={plate.Size} HalfBar={false}></Plate>
+                <div className='instruction-plate-wrapper'>
+                    <Plate Color={plate.Color} Size={plate.Size} HalfBar={false}></Plate>
+                </div>
                 <a className='instruction-text'> {plate.Qty} x {plate.Weight}KG</a>
             </div>)
         })
 
-        if(props.Collars){
+        if (props.Collars) {
             elements.push(<div className='instruction' key={"collar"} >
-            <Collar side={0} Plates={[]} on={true} Instruction={true} HalfBar={false}></Collar>
-            <a className='instruction-text'> {1} x COLLAR</a>
-        </div>)
+                <div className='instruction-plate-wrapper'>
+                    <Collar side={0} Plates={[]} on={true} Instruction={true} HalfBar={false}></Collar>
+                </div>
+                <a className='instruction-text'> {1} x COLLAR</a>
+            </div>)
 
-            elements.push(<a style={{fontSize:"X-large"}} key={"infoText"}>*COLLARS WEIGH 2.5KG EACH</a>)
+            elements.push(<a style={{ fontSize: "X-large" }} key={"infoText"}>*COLLARS WEIGH 2.5KG EACH</a>)
         }
 
         return (elements)

@@ -1,10 +1,49 @@
 .instruction{
+  
+
+    width: 60%;
+    height: 5%;
+    border-radius: 28px;
+    background: var(--secondary);
     display: flex;
     align-items: center;
-    
+    justify-content: space-evenly;
 }
 
 .instruction-text{
+    width:200px;
     padding-left: 1em;
 }
 
+.instruction-plate-wrapper{
+    
+    background-color: var(--secondary);
+    padding: 10px;
+    border-radius: 20px;
+    scale: 0.7;
+}
+
+
+/* ******************** mobile view ********************** */
+
+@media (max-width: 850px) {
+    /* Styles for mobile view */
+    .instruction-text{
+        width: 150px;
+    }
+
+    .instruction{
+        scale: 1;
+        font-size: x-large;
+        backface-visibility: hidden;
+        -webkit-font-smoothing: subpixel-antialiased;
+        transform: perspective(1px) translateZ(0);
+      }
+
+      .instruction-plate-wrapper{
+        scale: 2;
+      }
+
+
+
+}

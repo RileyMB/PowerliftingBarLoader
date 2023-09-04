@@ -5,6 +5,7 @@ import 'react-data-grid/lib/styles.css';
 import Instructions from './Instructions';
 import Legend from './Legend';
 import HalfBar from './HalfBar';
+import arrowL from './images/arrow-L.svg';
 
 
 
@@ -14,6 +15,7 @@ function App() {
   const [RedPlates, SetRedPlates] = useState(true);
   const [Collars, SetCollars] = useState(true);
   const [BarWeight, setBarWeight] = useState(20);
+  const [showArrowHelper, toggleArrowHelper] = useState(true);
 
 
   return (
@@ -45,8 +47,10 @@ function App() {
         <div className='weight-enter-area'>
          
           <b>Enter your weight:</b>
+          
           <input className="WeightInput" type={"number"} step={2.5} min={Collars ? 25 : 20} max={625} defaultValue={Collars ? 25 : 20}
             onChange={(event) => {
+              toggleArrowHelper(false);
               // If input greater than 650 accept else set to 625
               if (Number(event.target.value) <= 625) {
                 setWeight(Number(event.target.value))
@@ -58,6 +62,7 @@ function App() {
             }
             }
           />
+        <img src={arrowL} className={showArrowHelper?"helperArrow": "helperArrow hide"} alt="Logo" />
         </div>
      </div>
         {/*****************************************************/}

@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Varela+Round&display=swap');
+@import url('https://rsms.me/inter/inter.css');
+
+
 
 body{
   font-family: 'Varela Round', sans-serif;
@@ -9,10 +12,18 @@ body{
   --secondary: #183D3D;
   --accent: #5C8374;
   --highlight:#93B1A6;
+
+
+  /* --primary: #FFF8F0;
+  --secondary: #424B54;
+  --accent:#A6808C;
+  --highlight: #A6808C; */
+
   --barColor: linear-gradient(180deg, rgb(74, 74, 74) 0%, rgb(74, 74, 74) 51%, rgb(15, 15, 15) 100%);
 }
 
 .App {
+
   display: flex;
   text-align: center;
   overflow-y: hidden;
@@ -47,6 +58,8 @@ body{
   font-size: calc(10px + 2vmin);
   color: var(--highlight);
   width: 100%;
+
+  
 
 
 
@@ -121,11 +134,12 @@ input[type=checkbox]:checked::before {
 
 .weight-enter-area{
   display: flex;
-  width: 50%;
   justify-content: center;
   align-items: center;
   margin: calc(10px + 1vmin);
   font-size: calc(15px + 1.5vw);
+
+  padding-left: 44px;
 
 }
 
@@ -157,6 +171,7 @@ input[type=checkbox]:checked::before {
   /* box-shadow: inset 0px 5px 44px -23px var(--accent); */
   filter: drop-shadow(0px 9px 10px #000);
   background: var(--secondary);
+  
   
   border-radius: 50px;
   width: clamp(450px, 50%);
@@ -221,7 +236,30 @@ input[type=checkbox]:checked::before {
 
 }
 
+.helperArrow{
+  transition: 0.5s;
+  margin-left: 20px;
+  animation: bounceLeftToRight 1s infinite;
+}
 
+.hide{
+  opacity: 0;
+}
+
+@keyframes bounceLeftToRight {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
 
 /* ******************** mobile view ********************** */
 
@@ -238,12 +276,7 @@ input[type=checkbox]:checked::before {
     min-height: 100%;
   }
 
-  .instruction{
-    scale: 2;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
-    transform: perspective(1px) translateZ(0);
-  }
+
 
   .Legend{
     margin: 0px 50px 0px 50px ;
@@ -308,5 +341,11 @@ input[type=checkbox]:checked::before {
     /* hack to stop unrendering background */
 
   }
+
+
+
+/***************************************************************/
+
+
 
 }
