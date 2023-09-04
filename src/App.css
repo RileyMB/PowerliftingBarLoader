@@ -102,9 +102,11 @@ body{
 .ButtonBarInput{
   margin-left: 10px;
   margin-top: 5px;
+  margin-bottom: 3px;
+  padding: 3px 5px;
 
-  max-width: calc(20px + 2.5vw);
-  font-size: calc(1px + 1vw);
+  /* max-width: calc(20px + 2.5vw); */
+  font-size: medium;
 
   font-family: 'Varela Round', sans-serif;
 
@@ -295,6 +297,7 @@ input[type=checkbox]:checked::before {
   .ButtonBarInput{
     font-size: 18px;
     margin: 10px 0 10px 0;
+    padding: 3px 5px;
    
   } 
 

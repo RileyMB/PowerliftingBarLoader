@@ -26,11 +26,16 @@ function App() {
         <div className='ButtonBar'>
           <label className='CheckBoxField'>Red Plates<input className='ButtonBarInput' type="checkbox" defaultChecked={true} onChange={() => SetRedPlates(!RedPlates)} /></label>
           <label className='CheckBoxField'>Collars<input className='ButtonBarInput' type="checkbox" defaultChecked={true} onChange={() => SetCollars(!Collars)} /></label>
-          <label className='CheckBoxField'>Bar Weight<input className='ButtonBarInput' type="number"
+          <label className='CheckBoxField'>Bar Weight
+            <input className='ButtonBarInput' type="number"
             defaultValue={20} min={5} max={35} step={2.5}
             onChange={(event) => {
-              if (Number(event.target.value) <= 35) {
-                setBarWeight(Number(event.target.value))
+              var inputbarweight = Math.abs(Number(event.target.value))
+
+              if (inputbarweight <= 35) {
+              
+                  setBarWeight(inputbarweight)
+                  event.target.value = inputbarweight.toString();
               } else {
                 setBarWeight(35)
                 event.target.value = '35'
@@ -48,7 +53,7 @@ function App() {
          
           <b>Enter your weight:</b>
           
-          <input className="WeightInput" type={"number"} step={2.5} min={Collars ? 25 : 20} max={625} defaultValue={Collars ? 25 : 20}
+          <input className="WeightInput" type={"number"} step={2.5} min={Collars ? BarWeight + 5 : BarWeight} max={625} defaultValue={Collars ? 25 : 20}
             onChange={(event) => {
               toggleArrowHelper(false);
               // If input greater than 650 accept else set to 625
