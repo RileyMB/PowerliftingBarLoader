@@ -30,12 +30,11 @@ function App() {
             <input className='ButtonBarInput' type="number"
             defaultValue={20} min={5} max={35} step={2.5}
             onChange={(event) => {
-              var inputbarweight = Math.abs(Number(event.target.value))
+              var inputbarweight = Number(event.target.value)
 
               if (inputbarweight <= 35) {
               
                   setBarWeight(inputbarweight)
-                  event.target.value = inputbarweight.toString();
               } else {
                 setBarWeight(35)
                 event.target.value = '35'
